@@ -1,152 +1,147 @@
-body {
+/* calculator_styles.css */
+
+/* Global resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  width: 100%;
+  height: 100%;
   background: #f5f7fa;
   font-family: 'Segoe UI', Arial, sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 40px 0;
 }
+
+/* Container layout */
 .calculator-container {
   display: flex;
-  gap: 40px;
   justify-content: center;
   align-items: flex-start;
-  margin: 40px auto;
+  gap: 40px;
   max-width: 900px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 20px;
 }
+
+/* Calculator form styling */
 #roof-calculator {
+  flex: 1 1 300px;
+  max-width: 340px;
+  width: 100%;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(200,16,46,0.09);
-  padding: 32px 28px 20px 28px;
-  width: 340px;
-  min-width: 250px;
-  max-width: 98vw;
-  margin: 0;
+  padding: 32px 28px 20px;
 }
 #roof-calculator h2 {
   text-align: center;
   color: #C8102E;
   margin-bottom: 18px;
-  font-weight: 600;
   font-size: 1.5rem;
+  font-weight: 600;
   letter-spacing: .02em;
 }
 #roof-calculator div {
   margin-bottom: 14px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 #roof-calculator label {
   font-size: 1rem;
   color: #223046;
-  margin-bottom: 2px;
 }
-#roof-calculator input[type="number"], #roof-calculator select {
-  padding: 8px;
+#roof-calculator input[type="number"],
+#roof-calculator select {
+  width: 100%;
+  padding: 10px;
   border: 1px solid #c9d0da;
   border-radius: 6px;
   font-size: 1rem;
-  outline: none;
-  transition: border .2s;
   background: #f8fafc;
+  transition: border .2s;
 }
-#roof-calculator input[type="number"]:focus, #roof-calculator select:focus {
+#roof-calculator input:focus,
+#roof-calculator select:focus {
   border-color: #C8102E;
   background: #fff;
 }
 #roof-calculator input[type="checkbox"] {
   accent-color: #C8102E;
-  margin-right: 6px;
-  width: 16px;
-  height: 16px;
+  margin-right: 8px;
 }
 #roof-calculator hr {
   border: none;
   border-top: 1px solid #e4e9f1;
-  margin: 22px 0 12px 0;
+  margin: 20px 0;
 }
 #roof-calculator p {
-  margin: 7px 0 0 0;
-  font-size: 1.06rem;
-  color: #324061;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-#roof-calculator strong {
-  color: #C8102E;
-  font-size: 1.13rem;
+  font-size: 1rem;
+  color: #324061;
+  margin: 8px 0;
 }
 #calculate {
-  margin-top: 22px;
   width: 100%;
-  padding: 13px 0;
+  padding: 14px 0;
+  margin-top: 20px;
   border: none;
   border-radius: 8px;
   background: #C8102E;
   color: #fff;
-  font-size: 1.18rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: .03em;
   cursor: pointer;
-  box-shadow: 0 1.5px 7px rgba(200,16,46,0.10);
-  transition: background .2s, transform .18s, box-shadow .22s;
+  transition: background .2s, transform .2s;
 }
-#calculate:hover, #calculate:focus {
+#calculate:hover {
   background: #a10c21;
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 6px 28px rgba(200,16,46,0.16);
+  transform: translateY(-2px);
 }
+
+/* Image panel styling */
 .image-holder {
+  flex: 0 0 250px;
+  width: 100%;
+  max-width: 340px;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 8px 28px 0 rgba(120, 36, 46, 0.08), 0 1.5px 7px rgba(200,16,46,0.07);
-  padding: 34px 28px 24px 28px;
-  min-width: 240px;
-  max-width: 340px;
+  box-shadow: 0 8px 28px rgba(120,36,46,0.08);
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 360px;
 }
-#panelImage {
+.image-holder img {
   width: 100%;
-  max-width: 260px;
   height: auto;
   border-radius: 12px;
-  border: 1.5px solid #e7e9f3;
-  box-shadow: 0 1.5px 7px rgba(200,16,46,0.10);
   object-fit: contain;
-  background: #eee;
-  display: block;
 }
 .panel-caption {
-  text-align: center;
+  margin-top: 12px;
+  font-size: 1rem;
   color: #223046;
-  font-size: 1.07rem;
-  margin-top: 17px;
-  font-weight: 500;
-  opacity: 0.85;
-  letter-spacing: .01em;
+  opacity: .85;
 }
-/* Responsivno za mobitele */
-@media (max-width: 900px) {
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
   .calculator-container {
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 20px;
+    padding: 10px;
+  }
+  #roof-calculator {
+    max-width: 100%;
+    padding: 20px;
   }
   .image-holder {
-    max-width: 95vw;
-    min-width: 0;
-    width: 100%;
-    padding: 10vw 4vw;
-    margin: 0;
-    height: auto;
-  }
-  #panelImage {
-    max-width: 100vw;
+    max-width: 100%;
+    padding: 20px;
   }
 }
