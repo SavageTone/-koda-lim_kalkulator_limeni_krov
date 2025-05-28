@@ -1,147 +1,238 @@
-/* calculator_styles.css */
-
-/* Global resets */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html, body {
-  width: 100%;
-  height: 100%;
-  background: #fff;
+body { 
+  background: #f5f7fa;
   font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px 0 20px 0;
 }
-
-/* Container layout */
 .calculator-container {
   display: flex;
+  gap: 36px;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
-  max-width: 900px;
+  margin: 28px auto;
+  max-width: 1000px;
   width: 100%;
-  margin: 40px auto;
-  padding: 20px;
 }
-
-/* Calculator form styling */
 #roof-calculator {
-  flex: 1 1 300px;
-  max-width: 340px;
-  width: 100%;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(200,16,46,0.09);
-  padding: 32px 28px 20px;
+  padding: 24px 18px 16px 18px;
+  width: 370px;
+  min-width: 210px;
+  max-width: 99vw;
+  margin: 0 auto;
 }
 #roof-calculator h2 {
   text-align: center;
   color: #C8102E;
-  margin-bottom: 18px;
-  font-size: 1.5rem;
+  margin-bottom: 14px;
   font-weight: 600;
+  font-size: 1.36rem;
   letter-spacing: .02em;
 }
-#roof-calculator div {
-  margin-bottom: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-#roof-calculator label {
-  font-size: 1rem;
-  color: #223046;
-}
-#roof-calculator input[type="number"],
-#roof-calculator select {
+#roof-calculator table {
+  border-collapse: collapse;
   width: 100%;
-  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+#roof-calculator th, #roof-calculator td {
+  border: none;
+  padding: 0.35em 0.32em;
+  text-align: left;
+  font-size: 0.96em;
+}
+#roof-calculator th {
+  font-weight: 600;
+  color: #223046;
+  background: #f7f7fa;
+}
+#roof-calculator input[type="number"] {
+  width: 80px;
+  padding: 6px;
+  border: 1px solid #c9d0da;
+  border-radius: 4px;
+  font-size: 1em;
+  background: #f8fafc;
+}
+#roof-calculator input[type="number"]:focus {
+  border-color: #C8102E;
+  background: #fff;
+}
+#roof-calculator select {
+  padding: 7px;
   border: 1px solid #c9d0da;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 1em;
   background: #f8fafc;
-  transition: border .2s;
+  margin-bottom: 4px;
 }
-#roof-calculator input:focus,
 #roof-calculator select:focus {
   border-color: #C8102E;
   background: #fff;
 }
 #roof-calculator input[type="checkbox"] {
   accent-color: #C8102E;
-  margin-right: 8px;
+  margin-right: 7px;
+  width: 16px;
+  height: 16px;
+}
+#roof-calculator button.secondary {
+  background: #fff;
+  color: #C8102E;
+  border: 1px solid #C8102E;
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  transition: 0.18s;
+}
+#roof-calculator button.secondary:hover {
+  background: #ffe3ea;
+  border-color: #a10c21;
 }
 #roof-calculator hr {
   border: none;
   border-top: 1px solid #e4e9f1;
-  margin: 20px 0;
+  margin: 18px 0 8px 0;
 }
 #roof-calculator p {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
+  margin: 7px 0 0 0;
+  font-size: 1.04rem;
   color: #324061;
-  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#roof-calculator strong {
+  color: #C8102E;
+  font-size: 1.10rem;
 }
 #calculate {
+  margin-top: 17px;
   width: 100%;
-  padding: 14px 0;
-  margin-top: 20px;
+  padding: 12px 0;
   border: none;
   border-radius: 8px;
   background: #C8102E;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.14rem;
   font-weight: 700;
+  letter-spacing: .02em;
   cursor: pointer;
-  transition: background .2s, transform .2s;
+  box-shadow: 0 1.5px 7px rgba(200,16,46,0.10);
+  transition: background .2s, transform .18s, box-shadow .22s;
 }
-#calculate:hover {
+#calculate:hover, #calculate:focus {
   background: #a10c21;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 28px rgba(200,16,46,0.16);
 }
-
-/* Image panel styling */
 .image-holder {
-  flex: 0 0 250px;
-  width: 100%;
-  max-width: 340px;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 8px 28px rgba(120,36,46,0.08);
-  padding: 24px;
+  box-shadow: 0 8px 28px 0 rgba(120, 36, 46, 0.08), 0 1.5px 7px rgba(200,16,46,0.07);
+  padding: 28px 20px 16px 20px;
+  min-width: 210px;
+  max-width: 335px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 340px;
 }
-.image-holder img {
+.table-scroll {
   width: 100%;
+}
+#panelImage {
+  width: 100%;
+  max-width: 210px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #e7e9f3;
+  box-shadow: 0 1.5px 7px rgba(200,16,46,0.09);
   object-fit: contain;
+  background: #eee;
+  display: block;
 }
 .panel-caption {
-  margin-top: 12px;
-  font-size: 1rem;
+  text-align: center;
   color: #223046;
-  opacity: .85;
+  font-size: 1.04rem;
+  margin-top: 12px;
+  font-weight: 500;
+  opacity: 0.85;
+  letter-spacing: .01em;
 }
-
-/* Responsive adjustments for mobile */
-@media (max-width: 600px) {
+/* Responsivno za tablete i mobitele */
+@media (max-width: 900px) {
   .calculator-container {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 10px;
+    margin: 18px auto;
+  }
+  #roof-calculator, .image-holder {
+    max-width: 96vw;
+    min-width: 0;
+    width: 100%;
+    margin: 0 auto 8vw auto;
+    padding: 6vw 2vw;
+    box-sizing: border-box;
   }
   #roof-calculator {
-    max-width: 100%;
-    padding: 20px;
+    padding-bottom: 16px;
   }
   .image-holder {
-    max-width: 100%;
-    padding: 20px;
+    height: auto;
+    padding-top: 4vw;
+    padding-bottom: 2vw;
+  }
+  #panelImage {
+    max-width: 85vw;
   }
 }
+@media (max-width: 600px) {
+  #roof-calculator {
+    padding: 7vw 2vw 4vw 2vw;
+    width: 100%;
+    min-width: unset;
+    font-size: 0.97em;
+  }
+  .image-holder {
+    padding: 5vw 2vw 4vw 2vw;
+    font-size: 0.96em;
+    height: auto;
+  }
+  #roof-calculator table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+    background: #fff;
+  }
+  #roof-calculator thead, 
+  #roof-calculator tbody, 
+  #roof-calculator tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  #roof-calculator th, #roof-calculator td {
+    font-size: 0.93em;
+    padding: 0.30em 0.2em;
+    min-width: 72px;
+    word-break: break-word;
+  }
+  #panelImage {
+    max-width: 98vw;
+    border-radius: 8px;
+  } 
+}
+/* --- OVDJE NE SMIJE BITI display: none; za table/thead/tbody/tr --- */
