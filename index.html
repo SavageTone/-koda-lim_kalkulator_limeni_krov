@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="hr">
-<head> 
+<head>
   <meta charset="UTF-8">
   <title>Kalkulator cijene krova</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,119 +8,76 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      background: #f6f8fa;
+      background: #fff;
       font-family: 'Segoe UI', Arial, sans-serif;
       min-height: 100vh;
-      padding: 20px 0;
+      padding: 20px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
+
     .calculator-container {
       display: flex;
-      gap: 36px;
+      gap: 40px;
+      max-width: 880px;
+      width: 100%;
       justify-content: center;
       align-items: flex-start;
-      max-width: 980px;
-      width: 100%;
-      margin: 28px auto 0 auto;
     }
     #roof-calculator {
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(200,16,46,0.09);
-      padding: 32px 24px 18px 24px;
-      flex: 1 1 400px;
-      max-width: 100%;
-      width: 430px;
-      margin: 0 auto;
+      padding: 32px;
+      width: 370px;
+      min-height: 520px;
+      flex-shrink: 0;
     }
     #roof-calculator h2 {
       text-align: center;
       color: #C8102E;
-      margin-bottom: 18px;
-      font-weight: 600;
+      margin-bottom: 20px;
       font-size: 1.5rem;
-      letter-spacing: .02em;
-    }
-    .table-scroll {
-      width: 100%;
-      overflow-x: auto;
-      margin-bottom: 14px;
-      -webkit-overflow-scrolling: touch;
-    }
-    #roof-calculator table {
-      border-collapse: collapse;
-      width: 100%;
-      background: #fff;
-      min-width: 530px;
-    }
-    #roof-calculator th, #roof-calculator td {
-      border: none;
-      padding: 0.38em 0.35em;
-      text-align: left;
-      font-size: 0.97em;
-    }
-    #roof-calculator th {
       font-weight: 600;
+    }
+    #roof-calculator label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 500;
       color: #223046;
-      background: #f7f7fa;
     }
-    #roof-calculator input[type="number"] {
-      width: 85px;
-      padding: 6px;
-      border: 1px solid #c9d0da;
-      border-radius: 4px;
-      font-size: 1em;
-      background: #f8fafc;
-    }
-    #roof-calculator input[type="number"]:focus {
-      border-color: #C8102E;
-      background: #fff;
-    }
+    #roof-calculator input,
     #roof-calculator select {
-      padding: 7px;
+      width: 100%;
+      padding: 8px;
       border: 1px solid #c9d0da;
       border-radius: 6px;
-      font-size: 1em;
+      font-size: 1rem;
       background: #f8fafc;
-      margin-bottom: 4px;
     }
+    #roof-calculator input:focus,
     #roof-calculator select:focus {
       border-color: #C8102E;
       background: #fff;
+      outline: none;
     }
     #roof-calculator input[type="checkbox"] {
       accent-color: #C8102E;
-      margin-right: 7px;
-      width: auto; height: auto;
-    }
-    #roof-calculator button.secondary {
-      background: #fff;
-      color: #C8102E;
-      border: 1px solid #C8102E;
-      padding: 7px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: 600;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      transition: 0.18s;
-    }
-    #roof-calculator button.secondary:hover {
-      background: #ffe3ea;
-      border-color: #a10c21;
+      width: auto;
+      margin-right: 6px;
     }
     #roof-calculator hr {
-      border: 0; border-top: 1px solid #e4e9f1;
-      margin: 20px 0 16px 0;
+      border: none;
+      border-top: 1px solid #e4e9f1;
+      margin: 20px 0;
     }
     #roof-calculator p {
-      font-size: 1rem;
-      color: #324061;
       display: flex;
       justify-content: space-between;
       margin: 8px 0;
+      font-size: 1rem;
+      color: #324061;
     }
     #calculate {
       margin-top: 20px;
@@ -136,347 +93,373 @@
       transition: background .2s, transform .2s;
     }
     #calculate:hover { background: #a10c21; transform: translateY(-2px); }
-    /* MODAL STILOVI */
-    .modal-backdrop {
-      position: fixed; left: 0; top: 0; right:0; bottom:0; z-index: 999;
-      background: rgba(44, 51, 65, 0.17);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .modal-content {
+    button.secondary {
       background: #fff;
-      padding: 32px 26px 22px 26px;
-      border-radius: 14px;
-      box-shadow: 0 7px 34px 0 rgba(33,20,40,0.22);
-      min-width: 320px;
-      max-width: 96vw;
-      text-align: center;
-    }
-    .modal-content input[type="text"], .modal-content input[type="email"], .modal-content input[type="tel"] {
-      width: 90%;
-      margin: 8px 0 15px 0;
-      padding: 7px;
+      color: #C8102E;
+      border: 1px solid #C8102E;
+      padding: 8px 14px;
       border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1em;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 12px;
+      transition: background .2s;
     }
+    button.secondary:hover { background: #ffe3ea; }
+
+    /* DESNI BOX - SLIKA */
     .image-holder {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 8px 28px rgba(120,36,46,0.08);
-      padding: 24px;
-      flex: 0 0 250px;
-      text-align: center;
-      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(200,16,46,0.09);
+      padding: 22px 14px 12px 14px;
+      width: 385px;
+      min-height: 293px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-width: 210px;
-      max-width: 335px;
-      height: 340px;
+      margin: 0 auto;
+      flex-shrink: 0;
     }
     .image-holder img {
-      max-width: 100%;
-      max-width: 210px;
-      height: auto;
+      max-width: 324px;
+      max-height: 386px;
       border-radius: 12px;
       object-fit: contain;
-      border: 1.5px solid #e7e9f3;
-      box-shadow: 0 1.5px 7px rgba(200,16,46,0.09);
-      background: #eee;
+      border: 1.2px solid #ececf2;
+      box-shadow: 0 2px 10px rgba(200,16,46,0.08);
+      background: #f8f8fb;
+      margin-bottom: 10px;
       display: block;
     }
     .panel-caption {
-      margin-top: 12px;
-      font-size: 1rem;
+      margin-top: 0;
+      font-size: 1.08rem;
       color: #223046;
-      opacity: .85;
+      opacity: .91;
+      text-align: center;
       font-weight: 500;
-      letter-spacing: .01em;
+      letter-spacing: 0.01em;
+    }
+
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(44,51,65,0.17);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal-content {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(33,20,40,0.22);
+      padding: 24px 20px;
+      width: 100%;
+      max-width: 360px;
       text-align: center;
     }
-    @media (max-width: 900px) {
+    .modal-content h3 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+      color: #223046;
+      font-weight: 600;
+    }
+    .modal-content label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #223046;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #c9d0da;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .modal-buttons button {
+      flex: 1;
+      padding: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .modal-buttons .submit-btn {
+      background: #C8102E;
+      color: #fff;
+    }
+    .modal-buttons .submit-btn:hover {
+      background: #a10c21;
+    }
+    .modal-buttons .cancel-btn {
+      background: #eee;
+      color: #223046;
+    }
+    .modal-buttons .cancel-btn:hover {
+      background: #ddd;
+    }
+    .status-msg { margin-top: 12px; font-weight: 600; color: #C8102E; }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 950px) {
       .calculator-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        margin: 18px auto;
-      }
-      #roof-calculator, .image-holder {
-        width: 100%;
-        min-width: 0;
-        max-width: 96vw;
-        margin: 0 auto 8vw auto;
-        padding: 6vw 2vw;
-        box-sizing: border-box;
+        gap: 22px;
+        max-width: 98vw;
       }
       #roof-calculator {
-        padding-bottom: 16px;
+        width: 310px;
+        min-height: 480px;
+        padding: 22px;
       }
       .image-holder {
-        height: auto;
-        padding-top: 4vw;
-        padding-bottom: 2vw;
+        width: 135px;
+        min-height: 140px;
+        padding: 15px 8px;
       }
       .image-holder img {
-        max-width: 85vw;
+        max-width: 88px;
+        max-height: 80px;
       }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 720px) {
+      .calculator-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        max-width: 97vw;
+      }
       #roof-calculator {
-        padding: 20px 10px;
-        font-size: 0.97em;
+        width: 95%;
+        margin: 0 auto;
+        min-height: unset;
       }
-      .table-scroll {
-        overflow-x: auto;
-      }
-      #roof-calculator select,
-      #roof-calculator input[type="number"] {
-        font-size: 0.93em;
-      }
-      #calculate { font-size: 1rem; }
-      #roof-calculator table {
-        min-width: 430px;
+      .image-holder {
+        width: 180px;
+        margin: 0 auto 14px auto;
+        min-height: 110px;
+        padding: 12px 5px 10px 5px;
       }
       .image-holder img {
-        max-width: 98vw;
-        border-radius: 8px;
+        max-width: 120px;
+        max-height: 70px;
+      }
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 6px;
+      }
+      .calculator-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 11px;
+        max-width: 100vw;
+      }
+      #roof-calculator {
+        width: 95%;
+        padding: 8px 2vw;
+        font-size: 0.98rem;
+      }
+      .image-holder {
+        width: 99%;
+        min-height: 70px;
+        padding: 9px 2px 6px 2px;
+        margin-bottom: 10px;
+      }
+      .image-holder img {
+        max-width: 90vw;
+        max-height: 62vw;
+      }
+      .panel-caption {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
-<body> 
+<body>
   <div class="calculator-container">
-    <!-- Glavna forma kalkulatora -->
     <form id="roof-calculator" autocomplete="off" onsubmit="return false;">
       <h2>Kalkulator cijene krova</h2>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Duljina (m)</th>
-              <th>Širina (m)</th>
-              <th>Kom</th>
-              <th>Površina/kom (m²)</th>
-              <th>Površina ukupno (m²)</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="panelsTable">
-            <tr>
-              <td>1</td>
-              <td><input type="number" class="len" min="0" step="0.01" value="0"></td>
-              <td><input type="number" class="wid" min="0" step="0.01" value="0"></td>
-              <td><input type="number" class="qty" min="1" value="1"></td>
-              <td class="areaPerPanel">0.00</td>
-              <td class="areaTotalPanel">0.00</td>
-              <td><button class="removeBtn" type="button" style="color:#C8102E;font-size:1.2em;">×</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <button id="addRowBtn" class="secondary" type="button">Dodaj ploču</button>
-      <div style="margin:16px 0 8px;">
-        <label for="panelType">Tip ploče:</label>
-        <select id="panelType">
-          <option value="T18" data-img="t18.png" data-price="9">Trapez T18 – 9 €/m²</option>
-          <option value="T35" data-img="t35.png" data-price="11">Trapez T35 – 11 €/m²</option>
-          <option value="CRIJEP" data-img="uni.png" data-price="10">Imitacija crijepa – 10 €/m²</option>
-        </select>
-      </div>
-      <div><label><input type="checkbox" id="addFilc">+ FILC (+1 €/m²)</label></div>
-      <div><label><input type="checkbox" id="addMat">Mat boja (+0,50 €/m²)</label></div>
+      <label for="roofLength">Dužina krova (m):</label>
+      <input type="number" id="roofLength" min="0.01" step="0.01" value="" required>
+      <label for="roofWidth">Širina krova (m):</label>
+      <input type="number" id="roofWidth" min="0.01" step="0.01" value="" required>
+      <label for="panelType">Tip ploče:</label>
+      <select id="panelType">
+        <option value="T18" data-img="t18.png" data-price="9" data-width="1.10">Trapez T18 – 9 €/m²</option>
+        <option value="T35" data-img="t35.png" data-price="11" data-width="1.06">Trapez T35 – 11 €/m²</option>
+        <option value="CRIJEP" data-img="uni.png" data-price="10" data-width="1.10">Imitacija crijepa – 10 €/m²</option>
+      </select>
+      <label><input type="checkbox" id="addFilc"> + FILC (+1 €/m²)</label>
+      <label><input type="checkbox" id="addMat"> Mat boja (+0,50 €/m²)</label>
       <hr>
-      <p>Ukupno ploča: <span id="numPanels">0</span></p>
+      <p>Broj ploča: <span id="numPanels">0</span></p>
       <p>Ukupna površina: <span id="totalArea">0,00</span> m²</p>
       <p>Ukupna cijena: <strong><span id="totalPrice">0,00</span> €</strong></p>
       <button id="calculate" type="button">Izračunaj</button>
-      <!-- Gumb za ponudu (otvara modal) -->
-      <button id="requestOfferBtn" class="secondary" type="button" style="margin-top:12px;">Zatraži ponudu</button>
+      <button id="requestOfferBtn" class="secondary" type="button">Zatraži ponudu</button>
     </form>
-
-    <!-- Prikaz slike panela -->
     <div class="image-holder">
       <img id="panelImage" src="t18.png" alt="Slika ploče">
-      <div id="panelCaption" class="panel-caption">Trapez T18</div>
+      <div class="panel-caption">Trapez T18</div>
     </div>
   </div>
 
-  <!-- MODAL ZA UNOS PODATAKA PONUDE -->
-  <div id="offerModal" class="modal-backdrop" style="display:none;">
+  <div id="offerModal" class="modal-backdrop">
     <div class="modal-content">
       <h3>Zatraži ponudu</h3>
       <form id="offerForm" autocomplete="off">
-        <label>Ime i prezime:<br>
-          <input type="text" id="kupacIme" name="ime" required>
-        </label><br>
-        <label>Email:<br>
-          <input type="email" id="kupacEmail" name="email" required>
-        </label><br>
-        <label>Broj telefona:<br>
-          <input type="tel" id="kupacTelefon" name="telefon" required>
-        </label><br>
-        <button type="submit" style="margin-top:12px;background:#C8102E;color:#fff;border:none;padding:8px 20px;border-radius:6px;font-weight:600;">Pošalji upit</button>
-        <button type="button" id="closeModalBtn" style="margin-left:15px;background:#eee;color:#333;border:none;padding:8px 20px;border-radius:6px;">Odustani</button>
+        <label for="kupacIme">Ime i prezime:</label>
+        <input type="text" id="kupacIme" name="ime" required>
+        <label for="kupacEmail">Email:</label>
+        <input type="email" id="kupacEmail" name="email" required>
+        <label for="kupacTelefon">Broj telefona:</label>
+        <input type="tel" id="kupacTelefon" name="telefon" required>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Pošalji upit</button>
+          <button type="button" class="cancel-btn" id="closeModalBtn">Odustani</button>
+        </div>
+        <div id="modalStatusMsg" class="status-msg"></div>
       </form>
-      <div id="modalStatusMsg" style="color:#C8102E;margin-top:14px;font-weight:600;"></div>
     </div>
   </div>
 
   <script>
-    // --- Slike panela i caption ---
-    const captions = { T18: 'Trapez T18', T35: 'Trapez T35', CRIJEP: 'Imitacija crijepa' };
-    document.getElementById('panelType').addEventListener('change', e => {
-      const opt = e.target.selectedOptions[0];
-      document.getElementById('panelImage').src = opt.dataset.img;
-      document.getElementById('panelCaption').textContent = captions[opt.value];
-    });
-
-    // --- Dinamičke tablice i kalkulacija ---
-    document.addEventListener('DOMContentLoaded', function () {
-      const table = document.getElementById('panelsTable');
-      const addRowBtn = document.getElementById('addRowBtn');
-      const calcBtn = document.getElementById('calculate');
+    document.addEventListener('DOMContentLoaded', () => {
+      // DOM elementi
+      const roofLen = document.getElementById('roofLength');
+      const roofWid = document.getElementById('roofWidth');
+      const panelType = document.getElementById('panelType');
       const numPanelsEl = document.getElementById('numPanels');
       const totalAreaEl = document.getElementById('totalArea');
       const totalPriceEl = document.getElementById('totalPrice');
-
-      function updateIndices() {
-        [...table.rows].forEach((row, i) => row.cells[0].textContent = i + 1);
-      }
-
-      function updateAreas() {
-        let totalPanels = 0, totalArea = 0;
-        [...table.rows].forEach(row => {
-          const len = parseFloat(row.querySelector('.len').value) || 0;
-          const wid = parseFloat(row.querySelector('.wid').value) || 0;
-          const qty = parseInt(row.querySelector('.qty').value) || 0;
-          const areaPerPanel = len * wid;
-          const areaTotalPanel = areaPerPanel * qty;
-          row.querySelector('.areaPerPanel').textContent = areaPerPanel.toFixed(2);
-          row.querySelector('.areaTotalPanel').textContent = areaTotalPanel.toFixed(2);
-          totalPanels += qty;
-          totalArea += areaTotalPanel;
-        });
-        numPanelsEl.textContent = totalPanels;
-        totalAreaEl.textContent = totalArea.toFixed(2);
-      }
-
-      addRowBtn.addEventListener('click', function () {
-        const rowCount = table.rows.length + 1;
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${rowCount}</td>
-          <td><input type="number" class="len" min="0" step="0.01" value="0"></td>
-          <td><input type="number" class="wid" min="0" step="0.01" value="0"></td>
-          <td><input type="number" class="qty" min="1" value="1"></td>
-          <td class="areaPerPanel">0.00</td>
-          <td class="areaTotalPanel">0.00</td>
-          <td><button class="removeBtn" type="button" style="color:#C8102E;font-size:1.2em;">×</button></td>
-        `;
-        table.appendChild(tr);
-        updateIndices();
-        updateAreas();
-      });
-
-      table.addEventListener('click', function(e) {
-        if (e.target.classList.contains('removeBtn')) {
-          e.target.closest('tr').remove();
-          updateIndices();
-          updateAreas();
-        }
-      });
-      table.addEventListener('input', updateAreas);
-      table.addEventListener('change', updateAreas);
-
-      calcBtn.addEventListener('click', function() {
-        updateAreas();
-        const area = parseFloat(totalAreaEl.textContent.replace(',', '.')) || 0;
-        const price = parseFloat(document.getElementById('panelType').selectedOptions[0].dataset.price);
-        const filc = document.getElementById('addFilc').checked ? 1 : 0;
-        const mat = document.getElementById('addMat').checked ? 0.5 : 0;
-        const total = area * (price + filc + mat);
-        totalPriceEl.textContent = total.toFixed(2);
-      });
-
-      updateAreas();
-
-      // --- MODAL LOGIKA ---
       const requestOfferBtn = document.getElementById('requestOfferBtn');
       const offerModal = document.getElementById('offerModal');
       const closeModalBtn = document.getElementById('closeModalBtn');
       const offerForm = document.getElementById('offerForm');
       const statusMsg = document.getElementById('modalStatusMsg');
+      const panelImage = document.getElementById('panelImage');
+      const panelCaption = document.querySelector('.panel-caption');
 
-      // Otvori modal
+      // Postavi sliku po izboru tipa ploče
+      function updateImage() {
+        const sel = panelType.selectedOptions[0];
+        panelImage.src = sel.dataset.img;
+        panelCaption.textContent = sel.textContent.split("–")[0].trim();
+      }
+
+      // Računaj površinu, cijenu i broj ploča
+      function calculate() {
+        const len = parseFloat(roofLen.value) || 0;
+        const wid = parseFloat(roofWid.value) || 0;
+        const sel = panelType.selectedOptions[0];
+        const pw = parseFloat(sel.dataset.width) || 0;
+        const price = parseFloat(sel.dataset.price);
+        const filc = document.getElementById('addFilc').checked ? 1 : 0;
+        const mat = document.getElementById('addMat').checked ? 0.5 : 0;
+
+        const numPanels = pw > 0 ? Math.ceil(wid / pw) : 0;
+        const area = len * pw * numPanels;
+
+        numPanelsEl.textContent = numPanels;
+        totalAreaEl.textContent = area.toFixed(2);
+        totalPriceEl.textContent = (area * (price + filc + mat)).toFixed(2);
+      }
+
+      // Automatsko računanje kod promjene vrijednosti
+      roofLen.addEventListener('input', calculate);
+      roofWid.addEventListener('input', calculate);
+      panelType.addEventListener('change', () => { updateImage(); calculate(); });
+      document.getElementById('addFilc').addEventListener('change', calculate);
+      document.getElementById('addMat').addEventListener('change', calculate);
+      document.getElementById('calculate').addEventListener('click', calculate);
+
+      // MODAL
       requestOfferBtn.addEventListener('click', () => {
-        offerModal.style.display = 'flex';
         statusMsg.textContent = '';
+        offerModal.classList.add('show');
       });
+      closeModalBtn.addEventListener('click', () => offerModal.classList.remove('show'));
 
-      // Zatvori modal
-      closeModalBtn.addEventListener('click', () => {
-        offerModal.style.display = 'none';
-      });
-
-      // Slanje forme na Google Apps Script
-      offerForm.addEventListener('submit', function(e) {
+      // Slanje ponude
+      offerForm.addEventListener('submit', e => {
         e.preventDefault();
+        calculate();
 
-        // Prikupi podatke iz kalkulatora
-        updateAreas();
-        const panels = [...table.rows].map(row => ({
-          len: row.querySelector('.len').value,
-          wid: row.querySelector('.wid').value,
-          qty: row.querySelector('.qty').value,
-          areaPerPanel: row.querySelector('.areaPerPanel').textContent,
-          areaTotalPanel: row.querySelector('.areaTotalPanel').textContent
-        }));
+        // Provjera da su unesene sve potrebne vrijednosti
+        if (
+          !roofLen.value || parseFloat(roofLen.value) <= 0 ||
+          !roofWid.value || parseFloat(roofWid.value) <= 0
+        ) {
+          statusMsg.textContent = 'Unesite ispravne dimenzije krova!';
+          statusMsg.style.color = '#C8102E';
+          return;
+        }
+        if (numPanelsEl.textContent == '0' || totalAreaEl.textContent == '0.00') {
+          statusMsg.textContent = 'Provjerite podatke o krovu!';
+          statusMsg.style.color = '#C8102E';
+          return;
+        }
 
-        // Dodaj datum u formatu ISO stringa (ili možeš koristiti lokalni string po želji)
-        const now = new Date();
-        const datum = now.toLocaleString("hr-HR"); // "27. 5. 2024. 21:44:33" ili koristi now.toISOString()
+        const now = new Date().toLocaleString('hr-HR');
+        const sel = panelType.selectedOptions[0];
 
-        const podaci = {
-          datum: datum, // OVDJE dodaješ datum
+        // Priprema detalja točno za tablicu
+        const detalji = `${roofLen.value}x${roofWid.value}m, ${numPanelsEl.textContent} kom, ${totalAreaEl.textContent}m²`;
+
+        const data = {
+          datum: now,
           ime: document.getElementById('kupacIme').value,
           email: document.getElementById('kupacEmail').value,
           telefon: document.getElementById('kupacTelefon').value,
-          panelType: document.getElementById('panelType').value,
-          addFilc: document.getElementById('addFilc').checked,
-          addMat: document.getElementById('addMat').checked,
-          totalPanels: document.getElementById('numPanels').textContent,
-          totalArea: document.getElementById('totalArea').textContent,
-          totalPrice: document.getElementById('totalPrice').textContent,
-          panels: panels
+          tip_ploce: sel ? sel.textContent.split("–")[0].trim() : "",
+          filc: document.getElementById('addFilc').checked ? 'da' : 'ne',
+          mat_boja: document.getElementById('addMat').checked ? 'da' : 'ne',
+          broj: numPanelsEl.textContent,
+          povrsina: totalAreaEl.textContent,
+          cijena: totalPriceEl.textContent,
+          detalji: detalji
         };
 
-        // ZAMIJENI s tvojim Google Apps Script URL-om!
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbwmOMQiTrlDaxi5n9C3kI5nOPwZiU8hjBCx3xm_8sa9sAonipnXQKPvXQVywFysrWdPTQ/exec";
-
+        // PROMIJENI na svoj GAS web app URL!
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbyyeMi1apltw8elVhZ0ggdyDzEy95Uj0Zj9DXS2yE41LwEXFK1TNwCyaQvMncm_ev-eZA/exec';
+        statusMsg.style.color = '#333';
         statusMsg.textContent = 'Slanje...';
 
         fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify(podaci)
+          body: JSON.stringify(data)
         })
-        .then(res => res.text())
-        .then(data => {
-          statusMsg.style.color = "#248c34";
-          statusMsg.textContent = 'Ponuda je zaprimljena! Hvala.';
-          setTimeout(() => {
-            offerModal.style.display = 'none';
-            offerForm.reset();
-            statusMsg.textContent = '';
-          }, 1700);
+        .then(r => r.text())
+        .then(txt => {
+          console.log('API odgovor:', txt);
+          statusMsg.style.color = '#248c34';
+          statusMsg.textContent = 'Ponuda poslana!';
+          setTimeout(()=>offerModal.classList.remove('show'),1500);
         })
         .catch(err => {
-          statusMsg.style.color = "#C8102E";
-          statusMsg.textContent = 'Greška pri slanju ponude!';
+          console.error('Fetch error:', err);
+          statusMsg.style.color = '#C8102E';
+          statusMsg.textContent = 'Greška pri slanju: ' + err.message;
         });
       });
+      // Inicijaliziraj
+      updateImage();
+      calculate();
     });
   </script>
 </body>
-</html>
